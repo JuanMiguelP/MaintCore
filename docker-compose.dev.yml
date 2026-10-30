@@ -1,0 +1,50 @@
+version: "3.9"
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-maintcore}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-maintcore_dev}
+      POSTGRES_DB: ${POSTGRES_DB:-maintcore}
+    ports:
+      - "${POSTGRES_PORT:-5432}:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-maintcore}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "${BACKEND_PORT:-8000}:8000"
+    environment:
+      DATABASE_URL: postgresql+asyncpg://${POSTGRES_USER:-maintcore}:${POSTGRES_PASSWORD:-maintcore_dev}@postgres:5432/${POSTGRES_DB:-maintcore}
+      JWT_SECRET_KEY: ${JWT_SECRET_KEY:-dev_secret_change_me}
+      ALLOWED_ORIGINS: '["http://localhost:5173"]'
+    depends_on:
+      postgres:
+        condition: service_healthy
+    volumes:
+      - ./backend/app:/app/app
+      - ./backend/seed.py:/app/seed.py
+      - app_logs:/app/logs
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      target: build
+    ports:
+      - "${FRONTEND_PORT:-5173}:80"
+    depends_on:
+      - backend
+
+volumes:
+  postgres_data:
+  app_logs:
