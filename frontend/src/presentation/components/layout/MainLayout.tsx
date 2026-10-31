@@ -28,6 +28,7 @@ import {
   Notifications as NotificationIcon,
   Logout as LogoutIcon,
 } from '@mui/icons-material'
+import GlobalSearch from '@/presentation/components/GlobalSearch'
 
 const DRAWER_WIDTH = 260
 
@@ -62,6 +63,7 @@ export default function MainLayout() {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             MaintCore CMMS
           </Typography>
+          <GlobalSearch />
           <IconButton color="inherit" onClick={handleLogout}>
             <LogoutIcon />
           </IconButton>

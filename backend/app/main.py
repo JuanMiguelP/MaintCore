@@ -19,6 +19,7 @@ from app.presentation.work_orders.router import router as work_orders_router
 from app.presentation.preventive_maintenance.router import router as preventive_maintenance_router
 from app.presentation.dashboard.router import router as dashboard_router
 from app.presentation.notifications.router import router as notifications_router
+from app.presentation.search.router import router as search_router
 
 settings = get_settings()
 
@@ -65,6 +66,7 @@ app.include_router(work_orders_router, prefix="/api/v1")
 app.include_router(preventive_maintenance_router, prefix="/api/v1")
 app.include_router(dashboard_router, prefix="/api/v1")
 app.include_router(notifications_router, prefix="/api/v1")
+app.include_router(search_router, prefix="/api/v1")
 
 
 @app.get("/api/health")
