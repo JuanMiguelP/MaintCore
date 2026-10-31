@@ -1,4 +1,4 @@
-"""Seed script: crea roles por defecto y usuario admin."""
+﻿"""Seed script: crea roles por defecto y usuario admin."""
 
 import asyncio
 import sys
@@ -16,7 +16,7 @@ from app.infrastructure.auth.services.password_service import PasswordService
 ROLES = [
     {"name": "Admin", "description": "Administrador completo del sistema"},
     {"name": "Supervisor", "description": "Supervisor de mantenimiento"},
-    {"name": "Technician", "description": "T\u00e9cnico de campo"},
+    {"name": "Technician", "description": "Técnico de campo"},
     {"name": "Viewer", "description": "Solo lectura"},
 ]
 
@@ -28,6 +28,9 @@ PERMISSIONS = {
         ("users", "create"), ("users", "read"), ("users", "update"), ("users", "delete"),
         ("work_orders", "create"), ("work_orders", "read"), ("work_orders", "update"), ("work_orders", "delete"),
         ("inventory", "create"), ("inventory", "read"), ("inventory", "update"), ("inventory", "delete"),
+        ("suppliers", "create"), ("suppliers", "read"), ("suppliers", "update"), ("suppliers", "delete"),
+        ("preventive", "create"), ("preventive", "read"), ("preventive", "update"), ("preventive", "delete"),
+        ("notifications", "read"), ("notifications", "update"),
         ("reports", "read"), ("settings", "read"), ("settings", "update"),
     ],
     "Supervisor": [
@@ -36,12 +39,16 @@ PERMISSIONS = {
         ("locations", "read"),
         ("work_orders", "create"), ("work_orders", "read"), ("work_orders", "update"),
         ("inventory", "read"), ("inventory", "update"),
+        ("suppliers", "read"), ("suppliers", "update"),
+        ("preventive", "read"), ("preventive", "update"),
+        ("notifications", "read"),
         ("reports", "read"),
     ],
     "Technician": [
         ("assets", "read"),
         ("work_orders", "read"), ("work_orders", "update"),
         ("inventory", "read"), ("inventory", "update"),
+        ("preventive", "read"),
     ],
     "Viewer": [
         ("assets", "read"),
