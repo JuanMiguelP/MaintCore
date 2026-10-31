@@ -12,6 +12,9 @@ import WorkOrderList from './presentation/pages/WorkOrders/WorkOrderList'
 import PreventiveMaintenanceList from './presentation/pages/PreventiveMaintenance/PreventiveMaintenanceList'
 import NotificationSettings from './presentation/pages/NotificationSettings/NotificationSettings'
 import PartList from './presentation/pages/Inventory/PartList'
+import SupplierList from './presentation/pages/Suppliers/SupplierList'
+import LocationList from './presentation/pages/Locations/LocationList'
+import ReportsPage from './presentation/pages/Reports/ReportsPage'
 
 // Layout
 import MainLayout from './presentation/components/layout/MainLayout'
@@ -42,6 +45,9 @@ function App() {
         <Route path="preventive-maintenance" element={<PreventiveMaintenanceList />} />
         <Route path="notification-settings" element={<NotificationSettings />} />
         <Route path="inventory" element={<PartList />} />
+        <Route path="suppliers" element={<SupplierList />} />
+        <Route path="locations" element={<LocationList />} />
+        <Route path="reports" element={<ReportsPage />} />
       </Route>
 
       <Route path="*" element={<Navigate to={authenticated ? "/" : "/login"} replace />} />

@@ -25,6 +25,9 @@ import {
   Assignment as WorkOrdersIcon,
   Build as PreventiveIcon,
   Inventory2 as PartsIcon,
+  Store as SuppliersIcon,
+  LocationOn as LocationsIcon,
+  BarChart as ReportsIcon,
   Notifications as NotificationIcon,
   Logout as LogoutIcon,
 } from '@mui/icons-material'
@@ -39,7 +42,10 @@ const navItems = [
   { text: 'Usuarios', path: '/users', icon: <UsersIcon /> },
   { text: 'Órdenes de Trabajo', path: '/work-orders', icon: <WorkOrdersIcon /> },
   { text: 'Repuestos', path: '/inventory', icon: <PartsIcon /> },
+  { text: 'Proveedores', path: '/suppliers', icon: <SuppliersIcon /> },
+  { text: 'Ubicaciones', path: '/locations', icon: <LocationsIcon /> },
   { text: 'Mantenimiento Preventivo', path: '/preventive-maintenance', icon: <PreventiveIcon /> },
+  { text: 'Reportes', path: '/reports', icon: <ReportsIcon /> },
   { text: 'Notificaciones', path: '/notification-settings', icon: <NotificationIcon /> },
 ]
 
